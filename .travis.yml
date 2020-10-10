@@ -8,6 +8,7 @@ branches:
 addons:
   ssh_known_hosts: "$server_ip"
 before_install:
+- chmod +x mvnw
 - openssl aes-256-cbc -K $encrypted_ec0015db4ac4_key -iv $encrypted_ec0015db4ac4_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 script:
