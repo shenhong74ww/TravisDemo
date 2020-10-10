@@ -1,20 +1,22 @@
 language: java
 services:
-  - docker
+- docker
 sudo: required
 branches:
   only:
-    - main
+  - main
 addons:
-  ssh_known_hosts: $server_ip
+  ssh_known_hosts: "$server_ip"
 before_install:
-- openssl aes-256-cbc -K $encrypted_7eae0d396287_key -iv $encrypted_7eae0d396287_iv
-  -in id_rsa.enc -out C:\\Users\\Raytine\\.ssh\\id_rsa -d
+- openssl aes-256-cbc -K $encrypted_ec0015db4ac4_key -iv $encrypted_ec0015db4ac4_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
 script:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - docker build -t registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest .
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- docker build -t registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest
+  .
 after_success:
-  - docker login --username=冷饮cc  -p=$aliyun_pwd registry.cn-shanghai.aliyuncs.com
-  - docker push registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest
-  - chmod 600 ~/.ssh/id_rsa
-  - ssh -o "StrictHostKeyChecking no" -i ~/.ssh/id_rsa ubuntu@$server_ip "cd /mydockerdata;docker-compose -f docker-compose.yml pull;docker-compose -f docker-compose.yml up -d;exit"
+- docker login --username=冷饮cc  -p=$aliyun_pwd registry.cn-shanghai.aliyuncs.com
+- docker push registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest
+- chmod 600 ~/.ssh/id_rsa
+- ssh -o "StrictHostKeyChecking no" -i ~/.ssh/id_rsa ubuntu@$server_ip "cd /mydockerdata;docker-compose
+  -f docker-compose.yml pull;docker-compose -f docker-compose.yml up -d;exit"
