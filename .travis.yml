@@ -11,6 +11,8 @@ before_install:
 - chmod +x mvnw
 - openssl aes-256-cbc -K $encrypted_ec0015db4ac4_key -iv $encrypted_ec0015db4ac4_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
+before_script:
+- export LANG=en_US.UTF-8
 script:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 - docker build -t registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest
