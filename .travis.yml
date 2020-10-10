@@ -4,7 +4,7 @@ services:
 sudo: required
 branches:
   only:
-    - master
+    - main
 addons:
   ssh_known_hosts: $server_ip
 before_install:
