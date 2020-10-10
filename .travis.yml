@@ -18,7 +18,7 @@ script:
 - docker build -t registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest
   .
 after_success:
-- docker login --username=冷饮cc  -p=$aliyun_pwd registry.cn-shanghai.aliyuncs.com
+- docker login --username=gulimall@1264240977532271 -p=$aliyun_pwd registry.cn-shanghai.aliyuncs.com
 - docker push registry.cn-shanghai.aliyuncs.com/travis_test/chris_images:latest
 - chmod 600 ~/.ssh/id_rsa
 - ssh -o "StrictHostKeyChecking no" -i ~/.ssh/id_rsa ubuntu@$server_ip "cd /mydockerdata;docker-compose
